@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WinForge</title>
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <aside class="side">
+      <div class="brand">
+        <span class="brand-mark">WF</span>
+        <span>
+          <b>WinForge</b>
+          <small>настройка Windows</small>
+        </span>
+      </div>
+
+      <nav id="nav">
+        <button class="nav-item is-active" data-page="overview">Обзор</button>
+        <button class="nav-item" data-page="appearance">Внешний вид</button>
+        <button class="nav-item" data-page="privacy">Приватность</button>
+        <button class="nav-item" data-page="startup">Автозагрузка</button>
+        <button class="nav-item" data-page="apps">Приложения</button>
+        <button class="nav-item" data-page="performance">Производительность</button>
+        <button class="nav-item" data-page="applied">
+          Применённое <span class="count" id="applied-count">0</span>
+        </button>
+      </nav>
+
+      <div class="side-foot">
+        <div id="admin-state" class="admin">проверяю права…</div>
+        <button id="refresh" class="ghost">Перечитать состояние</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div id="banners"></div>
+      <section id="page" class="page"></section>
+    </main>
+
+    <div id="toast" class="toast" hidden></div>
+    <script src="app.js"></script>
+  </body>
+</html>

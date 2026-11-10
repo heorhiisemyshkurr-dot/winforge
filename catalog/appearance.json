@@ -1,0 +1,456 @@
+[
+  {
+    "id": "dark_mode",
+    "category": "appearance",
+    "title": "Тёмная тема",
+    "detail": "Тёмное оформление и для системы, и для приложений. Два значения пишутся вместе: поставь только одно — и получишь тёмное меню «Пуск» при светлых окнах.",
+    "effect": "immediate",
+    "risk": "safe",
+    "needs_admin": false,
+    "exclusive": "theme",
+    "action": {
+      "type": "RegGroup",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
+      "values": [
+        { "name": "AppsUseLightTheme", "kind": "REG_DWORD", "data": "0" },
+        { "name": "SystemUsesLightTheme", "kind": "REG_DWORD", "data": "0" }
+      ]
+    }
+  },
+  {
+    "id": "light_mode",
+    "category": "appearance",
+    "title": "Светлая тема",
+    "detail": "Светлое оформление системы и приложений — состояние по умолчанию у чистой Windows.",
+    "effect": "immediate",
+    "risk": "safe",
+    "needs_admin": false,
+    "exclusive": "theme",
+    "action": {
+      "type": "RegGroup",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
+      "values": [
+        { "name": "AppsUseLightTheme", "kind": "REG_DWORD", "data": "1" },
+        { "name": "SystemUsesLightTheme", "kind": "REG_DWORD", "data": "1" }
+      ]
+    }
+  },
+  {
+    "id": "accent_on_taskbar",
+    "category": "appearance",
+    "title": "Цвет акцента на панели задач и в заголовках",
+    "detail": "Панель задач и заголовки окон окрашиваются в выбранный цвет акцента вместо серого. Сам цвет выбирается в параметрах Windows — программа включает только его применение.",
+    "effect": "immediate",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
+      "name": "ColorPrevalence",
+      "kind": "REG_DWORD",
+      "data": "1"
+    }
+  },
+  {
+    "id": "transparency_off",
+    "category": "appearance",
+    "title": "Без прозрачности",
+    "detail": "Убирает размытие за панелью задач и окнами. Заодно снимает работу с видеокарты — на слабой встроенной графике это заметно по плавности окон.",
+    "effect": "immediate",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
+      "name": "EnableTransparency",
+      "kind": "REG_DWORD",
+      "data": "0"
+    }
+  },
+  {
+    "id": "taskbar_left",
+    "category": "appearance",
+    "title": "Значки панели задач слева",
+    "detail": "Кнопка «Пуск» и значки уезжают в левый угол, как было до Windows 11.",
+    "effect": "explorer_restart",
+    "risk": "safe",
+    "needs_admin": false,
+    "exclusive": "taskbar_align",
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "TaskbarAl",
+      "kind": "REG_DWORD",
+      "data": "0"
+    }
+  },
+  {
+    "id": "taskbar_center",
+    "category": "appearance",
+    "title": "Значки панели задач по центру",
+    "detail": "Положение значков по умолчанию в Windows 11 — по центру.",
+    "effect": "explorer_restart",
+    "risk": "safe",
+    "needs_admin": false,
+    "exclusive": "taskbar_align",
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "TaskbarAl",
+      "kind": "REG_DWORD",
+      "data": "1"
+    }
+  },
+  {
+    "id": "taskbar_hide_search",
+    "category": "appearance",
+    "title": "Убрать поиск с панели задач",
+    "detail": "Поле поиска исчезает с панели. Сам поиск остаётся: он открывается кнопкой «Пуск» и клавишей Windows.",
+    "effect": "explorer_restart",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Search",
+      "name": "SearchboxTaskbarMode",
+      "kind": "REG_DWORD",
+      "data": "0"
+    }
+  },
+  {
+    "id": "taskbar_hide_widgets",
+    "category": "appearance",
+    "title": "Убрать виджеты с панели задач",
+    "detail": "Прячет кнопку виджетов — ту, что показывает погоду и новости в левом углу.",
+    "effect": "explorer_restart",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "TaskbarDa",
+      "kind": "REG_DWORD",
+      "data": "0"
+    }
+  },
+  {
+    "id": "taskbar_hide_taskview",
+    "category": "appearance",
+    "title": "Убрать «Представление задач»",
+    "detail": "Прячет кнопку переключения рабочих столов. Сами столы остаются и работают по Win+Tab.",
+    "effect": "explorer_restart",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "ShowTaskViewButton",
+      "kind": "REG_DWORD",
+      "data": "0"
+    }
+  },
+  {
+    "id": "taskbar_hide_chat",
+    "category": "appearance",
+    "title": "Убрать чат Teams с панели задач",
+    "detail": "Прячет кнопку чата. Приложение Teams, если оно установлено, остаётся на месте.",
+    "effect": "explorer_restart",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "TaskbarMn",
+      "kind": "REG_DWORD",
+      "data": "0"
+    }
+  },
+  {
+    "id": "taskbar_end_task",
+    "category": "appearance",
+    "title": "«Снять задачу» в меню панели задач",
+    "detail": "Добавляет в меню по правой кнопке на значке пункт, который убивает зависшее приложение, — без открытия диспетчера задач.",
+    "effect": "explorer_restart",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced\\TaskbarDeveloperSettings",
+      "name": "TaskbarEndTask",
+      "kind": "REG_DWORD",
+      "data": "1"
+    }
+  },
+  {
+    "id": "taskbar_seconds",
+    "category": "appearance",
+    "title": "Секунды в часах",
+    "detail": "Часы на панели задач показывают секунды. Стоит знать: Windows из-за этого обновляет панель каждую секунду, и на ноутбуке это немного расходует батарею.",
+    "effect": "explorer_restart",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "ShowSecondsInSystemClock",
+      "kind": "REG_DWORD",
+      "data": "1"
+    }
+  },
+  {
+    "id": "taskbar_no_recent_docs",
+    "category": "appearance",
+    "title": "Без недавних файлов в меню «Пуск» и списках переходов",
+    "detail": "Windows перестаёт запоминать, какие файлы вы открывали, и предлагать их в меню. Уже накопленный список она при этом не чистит.",
+    "effect": "explorer_restart",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "Start_TrackDocs",
+      "kind": "REG_DWORD",
+      "data": "0"
+    }
+  },
+  {
+    "id": "start_more_pins",
+    "category": "appearance",
+    "title": "Больше закреплённых в меню «Пуск»",
+    "detail": "Меняет раскладку меню: больше места под закреплённые значки, меньше — под «Рекомендуем».",
+    "effect": "explorer_restart",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "Start_Layout",
+      "kind": "REG_DWORD",
+      "data": "1"
+    }
+  },
+  {
+    "id": "explorer_show_extensions",
+    "category": "appearance",
+    "title": "Показывать расширения файлов",
+    "detail": "Проводник перестаёт скрывать «.exe» и «.txt». Это ещё и про безопасность: без расширений «фото.jpg.exe» выглядит как картинка.",
+    "effect": "explorer_restart",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "HideFileExt",
+      "kind": "REG_DWORD",
+      "data": "0"
+    }
+  },
+  {
+    "id": "explorer_show_hidden",
+    "category": "appearance",
+    "title": "Показывать скрытые файлы",
+    "detail": "Видно скрытые папки вроде AppData. Системные файлы при этом остаются скрытыми — для них отдельный пункт.",
+    "effect": "explorer_restart",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "Hidden",
+      "kind": "REG_DWORD",
+      "data": "1"
+    }
+  },
+  {
+    "id": "explorer_show_super_hidden",
+    "category": "appearance",
+    "title": "Показывать защищённые системные файлы",
+    "detail": "Видно pagefile.sys, hiberfil.sys и папки восстановления. Включайте, если понимаете, что видите: это те файлы, удаление которых ломает загрузку.",
+    "effect": "explorer_restart",
+    "risk": "caution",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "ShowSuperHidden",
+      "kind": "REG_DWORD",
+      "data": "1"
+    }
+  },
+  {
+    "id": "explorer_open_this_pc",
+    "category": "appearance",
+    "title": "Проводник открывается на «Этот компьютер»",
+    "detail": "Вместо страницы «Главная» с недавними файлами Проводник открывает список диcков.",
+    "effect": "explorer_restart",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "LaunchTo",
+      "kind": "REG_DWORD",
+      "data": "1"
+    }
+  },
+  {
+    "id": "explorer_compact",
+    "category": "appearance",
+    "title": "Плотный список в Проводнике",
+    "detail": "Убирает дополнительные отступы между строками — на экране помещается заметно больше файлов.",
+    "effect": "explorer_restart",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "UseCompactMode",
+      "kind": "REG_DWORD",
+      "data": "1"
+    }
+  },
+  {
+    "id": "explorer_no_recent",
+    "category": "appearance",
+    "title": "Без недавних и частых файлов на «Главной»",
+    "detail": "Страница «Главная» Проводника перестаёт показывать, что вы открывали. Два значения пишутся вместе: недавние и частые — это разные списки.",
+    "effect": "explorer_restart",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "RegGroup",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "values": [
+        { "name": "ShowRecent", "kind": "REG_DWORD", "data": "0" },
+        { "name": "ShowFrequent", "kind": "REG_DWORD", "data": "0" }
+      ]
+    }
+  },
+  {
+    "id": "explorer_no_gallery",
+    "category": "appearance",
+    "title": "Убрать «Галерею» из области переходов",
+    "detail": "Прячет раздел «Галерея» из левой панели Проводника. Фотографии остаются на месте — убирается только ярлык.",
+    "effect": "explorer_restart",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Classes\\CLSID\\{e88865ea-0e1c-4e20-9aa6-edcd0212c87c}",
+      "name": "System.IsPinnedToNameSpaceTree",
+      "kind": "REG_DWORD",
+      "data": "0"
+    }
+  },
+  {
+    "id": "explorer_sync_ads_off",
+    "category": "appearance",
+    "title": "Без рекламы OneDrive в Проводнике",
+    "detail": "Проводник перестаёт показывать всплывающие предложения купить место в OneDrive под видом уведомлений поставщика синхронизации.",
+    "effect": "explorer_restart",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "ShowSyncProviderNotifications",
+      "kind": "REG_DWORD",
+      "data": "0"
+    }
+  },
+  {
+    "id": "context_menu_classic",
+    "category": "appearance",
+    "title": "Старое контекстное меню (как в Windows 10)",
+    "detail": "Правая кнопка сразу открывает полное меню, без пункта «Показать дополнительные параметры». Делается заглушкой вместо обработчика нового меню — ветка создаётся пустой, а откат удаляет её целиком.",
+    "effect": "explorer_restart",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "RegKeyBlank",
+      "path": "HKCU\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\\InprocServer32"
+    }
+  },
+  {
+    "id": "shortcut_no_suffix",
+    "category": "appearance",
+    "title": "Без приписки «— ярлык» у новых ярлыков",
+    "detail": "Новые ярлыки называются как исходный файл. Уже созданные не переименовываются — Windows читает этот шаблон только при создании.",
+    "effect": "explorer_restart",
+    "risk": "safe",
+    "needs_admin": true,
+    "action": {
+      "type": "Reg",
+      "path": "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\NamingTemplates",
+      "name": "ShortcutNameTemplate",
+      "kind": "REG_SZ",
+      "data": "%s.lnk"
+    }
+  },
+  {
+    "id": "menu_show_delay_0",
+    "category": "appearance",
+    "title": "Меню открываются без задержки",
+    "detail": "Убирает паузу перед раскрытием подменю (по умолчанию 400 мс). Вступает в силу после повторного входа в систему.",
+    "effect": "sign_out",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Control Panel\\Desktop",
+      "name": "MenuShowDelay",
+      "kind": "REG_SZ",
+      "data": "0"
+    }
+  },
+  {
+    "id": "window_animations_off",
+    "category": "appearance",
+    "title": "Без анимации сворачивания окон",
+    "detail": "Окна сворачиваются и разворачиваются мгновенно. Самая заметная на глаз экономия из всех «визуальных эффектов».",
+    "effect": "sign_out",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Control Panel\\Desktop\\WindowMetrics",
+      "name": "MinAnimate",
+      "kind": "REG_SZ",
+      "data": "0"
+    }
+  },
+  {
+    "id": "mouse_accel_off",
+    "category": "appearance",
+    "title": "Выключить ускорение мыши",
+    "detail": "Курсор начинает ходить ровно на столько, на сколько вы двинули мышь, независимо от скорости движения. Три значения пишутся вместе: ускорение выключено только когда все три равны нулю — по одному они не делают ничего.",
+    "effect": "sign_out",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "RegGroup",
+      "path": "HKCU\\Control Panel\\Mouse",
+      "values": [
+        { "name": "MouseSpeed", "kind": "REG_SZ", "data": "0" },
+        { "name": "MouseThreshold1", "kind": "REG_SZ", "data": "0" },
+        { "name": "MouseThreshold2", "kind": "REG_SZ", "data": "0" }
+      ]
+    }
+  },
+  {
+    "id": "startup_sound_off",
+    "category": "appearance",
+    "title": "Без звука запуска Windows",
+    "detail": "Убирает мелодию при загрузке системы.",
+    "effect": "reboot",
+    "risk": "safe",
+    "needs_admin": true,
+    "action": {
+      "type": "Reg",
+      "path": "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Authentication\\LogonUI\\BootAnimation",
+      "name": "DisableStartupSound",
+      "kind": "REG_DWORD",
+      "data": "1"
+    }
+  }
+]

@@ -1,0 +1,378 @@
+[
+  {
+    "id": "telemetry_off",
+    "category": "privacy",
+    "title": "Диагностические данные — минимум",
+    "detail": "Политика запрещает отправку диагностических данных. Честная оговорка: полностью отключить телеметрию этим значением нельзя — в домашней редакции Windows трактует ноль как «только обязательные данные», и часть их всё равно уходит.",
+    "effect": "reboot",
+    "risk": "safe",
+    "needs_admin": true,
+    "action": {
+      "type": "Reg",
+      "path": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection",
+      "name": "AllowTelemetry",
+      "kind": "REG_DWORD",
+      "data": "0"
+    }
+  },
+  {
+    "id": "service_diagtrack",
+    "category": "privacy",
+    "title": "Отключить службу сбора телеметрии (DiagTrack)",
+    "detail": "Служба «Функциональные возможности для подключённых пользователей и телеметрия» — это та, что собирает и отправляет диагностические данные. Отключается и останавливается сразу. На работу приложений не влияет.",
+    "effect": "immediate",
+    "risk": "safe",
+    "needs_admin": true,
+    "action": { "type": "Service", "name": "DiagTrack", "start": "disabled" }
+  },
+  {
+    "id": "advertising_id_off",
+    "category": "privacy",
+    "title": "Выключить рекламный идентификатор",
+    "detail": "Приложения перестают получать ваш рекламный номер, по которому реклама связывается между программами. Самой рекламы в приложениях от этого не становится меньше — она становится не адресной.",
+    "effect": "sign_out",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\AdvertisingInfo",
+      "name": "Enabled",
+      "kind": "REG_DWORD",
+      "data": "0"
+    }
+  },
+  {
+    "id": "tailored_experiences_off",
+    "category": "privacy",
+    "title": "Без «персонализированных» советов",
+    "detail": "Windows перестаёт использовать диагностические данные, чтобы подбирать советы и рекламу в меню «Пуск» и в параметрах.",
+    "effect": "immediate",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Privacy",
+      "name": "TailoredExperiencesWithDiagnosticDataEnabled",
+      "kind": "REG_DWORD",
+      "data": "0"
+    }
+  },
+  {
+    "id": "activity_history_off",
+    "category": "privacy",
+    "title": "Не вести журнал действий",
+    "detail": "Windows перестаёт собирать и отправлять историю того, что вы открывали. Два значения вместе: одно запрещает собирать, другое — отправлять.",
+    "effect": "reboot",
+    "risk": "safe",
+    "needs_admin": true,
+    "action": {
+      "type": "RegGroup",
+      "path": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\System",
+      "values": [
+        { "name": "PublishUserActivities", "kind": "REG_DWORD", "data": "0" },
+        { "name": "UploadUserActivities", "kind": "REG_DWORD", "data": "0" }
+      ]
+    }
+  },
+  {
+    "id": "start_suggestions_off",
+    "category": "privacy",
+    "title": "Без подсказок, реклам и тихой установки приложений",
+    "detail": "Одним изменением выключается всё, что Microsoft доставляет в меню «Пуск», на экран блокировки и в параметры: советы, реклама приложений, предложения и тихая установка «рекомендованных» программ при первом входе.",
+    "effect": "sign_out",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "RegGroup",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+      "values": [
+        { "name": "SystemPaneSuggestionsEnabled", "kind": "REG_DWORD", "data": "0" },
+        { "name": "SoftLandingEnabled", "kind": "REG_DWORD", "data": "0" },
+        { "name": "SilentInstalledAppsEnabled", "kind": "REG_DWORD", "data": "0" },
+        { "name": "PreInstalledAppsEnabled", "kind": "REG_DWORD", "data": "0" },
+        { "name": "OemPreInstalledAppsEnabled", "kind": "REG_DWORD", "data": "0" },
+        { "name": "RotatingLockScreenOverlayEnabled", "kind": "REG_DWORD", "data": "0" },
+        { "name": "SubscribedContent-338387Enabled", "kind": "REG_DWORD", "data": "0" },
+        { "name": "SubscribedContent-338388Enabled", "kind": "REG_DWORD", "data": "0" },
+        { "name": "SubscribedContent-338389Enabled", "kind": "REG_DWORD", "data": "0" },
+        { "name": "SubscribedContent-338393Enabled", "kind": "REG_DWORD", "data": "0" },
+        { "name": "SubscribedContent-353694Enabled", "kind": "REG_DWORD", "data": "0" },
+        { "name": "SubscribedContent-353696Enabled", "kind": "REG_DWORD", "data": "0" },
+        { "name": "SubscribedContent-310093Enabled", "kind": "REG_DWORD", "data": "0" }
+      ]
+    }
+  },
+  {
+    "id": "copilot_policy_off",
+    "category": "privacy",
+    "title": "Выключить Copilot",
+    "detail": "Политика запрещает запуск Copilot для этого пользователя.",
+    "effect": "sign_out",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Policies\\Microsoft\\Windows\\WindowsCopilot",
+      "name": "TurnOffWindowsCopilot",
+      "kind": "REG_DWORD",
+      "data": "1"
+    }
+  },
+  {
+    "id": "copilot_button_off",
+    "category": "privacy",
+    "title": "Убрать кнопку Copilot с панели задач",
+    "detail": "Отдельный пункт, потому что это другая ветка реестра: политика выключает сам Copilot, а это значение убирает его кнопку.",
+    "effect": "explorer_restart",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+      "name": "ShowCopilotButton",
+      "kind": "REG_DWORD",
+      "data": "0"
+    }
+  },
+  {
+    "id": "recall_off",
+    "category": "privacy",
+    "title": "Запретить Recall (запоминание экрана)",
+    "detail": "Политика запрещает анализ снимков экрана, на котором построен Recall. Имеет смысл даже там, где Recall недоступен: запрет выставляется заранее и сохранится при обновлении системы.",
+    "effect": "reboot",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Policies\\Microsoft\\Windows\\WindowsAI",
+      "name": "DisableAIDataAnalysis",
+      "kind": "REG_DWORD",
+      "data": "1"
+    }
+  },
+  {
+    "id": "cortana_off",
+    "category": "privacy",
+    "title": "Запретить Cortana",
+    "detail": "Политика запрещает голосового помощника. Поиск по файлам при этом остаётся — он работает отдельно от Cortana.",
+    "effect": "reboot",
+    "risk": "safe",
+    "needs_admin": true,
+    "action": {
+      "type": "Reg",
+      "path": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Windows Search",
+      "name": "AllowCortana",
+      "kind": "REG_DWORD",
+      "data": "0"
+    }
+  },
+  {
+    "id": "web_search_off",
+    "category": "privacy",
+    "title": "Убрать веб-результаты из поиска Windows",
+    "detail": "Меню «Пуск» перестаёт отправлять набранное в Bing и показывать результаты из интернета — ищет только по компьютеру. Два значения вместе: одно запрещает веб-поиск, другое — использование интернета в поиске.",
+    "effect": "reboot",
+    "risk": "safe",
+    "needs_admin": true,
+    "action": {
+      "type": "RegGroup",
+      "path": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Windows Search",
+      "values": [
+        { "name": "DisableWebSearch", "kind": "REG_DWORD", "data": "1" },
+        { "name": "ConnectedSearchUseWeb", "kind": "REG_DWORD", "data": "0" }
+      ]
+    }
+  },
+  {
+    "id": "bing_search_off",
+    "category": "privacy",
+    "title": "Выключить Bing в поиске для этого пользователя",
+    "detail": "То же, что и запрет веб-результатов, но на уровне пользователя и без прав администратора. Имеет смысл применять вместе: Windows читает оба места.",
+    "effect": "explorer_restart",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Search",
+      "name": "BingSearchEnabled",
+      "kind": "REG_DWORD",
+      "data": "0"
+    }
+  },
+  {
+    "id": "feedback_off",
+    "category": "privacy",
+    "title": "Не спрашивать отзывы о Windows",
+    "detail": "Windows перестаёт показывать окна «Насколько вы довольны?».",
+    "effect": "immediate",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\Siuf\\Rules",
+      "name": "NumberOfSIUFInPeriod",
+      "kind": "REG_DWORD",
+      "data": "0"
+    }
+  },
+  {
+    "id": "error_reporting_off",
+    "category": "privacy",
+    "title": "Выключить отправку отчётов об ошибках",
+    "detail": "Windows перестаёт собирать и отправлять дампы упавших приложений. Обратная сторона: в журнале событий станет меньше следов, по которым ищут причину падений.",
+    "effect": "reboot",
+    "risk": "caution",
+    "needs_admin": true,
+    "action": {
+      "type": "Reg",
+      "path": "HKLM\\SOFTWARE\\Microsoft\\Windows\\Windows Error Reporting",
+      "name": "Disabled",
+      "kind": "REG_DWORD",
+      "data": "1"
+    }
+  },
+  {
+    "id": "location_off",
+    "category": "privacy",
+    "title": "Запретить определение местоположения",
+    "detail": "Датчик местоположения выключается для всей системы. Перестанут работать погода по месту, Карты и часовой пояс по расположению.",
+    "effect": "reboot",
+    "risk": "caution",
+    "needs_admin": true,
+    "action": {
+      "type": "Reg",
+      "path": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Sensor\\Overrides\\{BFA794E4-F964-4FDB-90F6-51056BFE4B44}",
+      "name": "SensorPermissionState",
+      "kind": "REG_DWORD",
+      "data": "0"
+    }
+  },
+  {
+    "id": "task_ceip_consolidator",
+    "category": "privacy",
+    "title": "Выключить задание телеметрии Consolidator",
+    "detail": "Задание «Программа улучшения качества ПО» раз в день собирает и отправляет сведения об использовании системы.",
+    "effect": "immediate",
+    "risk": "safe",
+    "needs_admin": true,
+    "action": {
+      "type": "ScheduledTask",
+      "paths": ["\\Microsoft\\Windows\\Customer Experience Improvement Program\\Consolidator"]
+    }
+  },
+  {
+    "id": "task_usbceip",
+    "category": "privacy",
+    "title": "Выключить задание телеметрии USB (UsbCeip)",
+    "detail": "Задание собирает сведения о подключённых USB-устройствах и отправляет их в Microsoft.",
+    "effect": "immediate",
+    "risk": "safe",
+    "needs_admin": true,
+    "action": {
+      "type": "ScheduledTask",
+      "paths": ["\\Microsoft\\Windows\\Customer Experience Improvement Program\\UsbCeip"]
+    }
+  },
+  {
+    "id": "task_appraiser",
+    "category": "privacy",
+    "title": "Выключить задание проверки совместимости (Appraiser)",
+    "detail": "Задание собирает перечень установленных программ и оборудования, чтобы оценить готовность к обновлению Windows. Оно же — заметная фоновая нагрузка на диск. На Windows 11 сборки 26300 задание переименовано в «…Appraiser Exp», поэтому программа ищет оба имени и выключает то, которое есть в системе.",
+    "effect": "immediate",
+    "risk": "safe",
+    "needs_admin": true,
+    "action": {
+      "type": "ScheduledTask",
+      "paths": [
+        "\\Microsoft\\Windows\\Application Experience\\Microsoft Compatibility Appraiser",
+        "\\Microsoft\\Windows\\Application Experience\\Microsoft Compatibility Appraiser Exp"
+      ]
+    }
+  },
+  {
+    "id": "task_feedback_scenario",
+    "category": "privacy",
+    "title": "Выключить задание отзывов по сценарию (DmClientOnScenarioDownload)",
+    "detail": "Второе задание набора отзывов: скачивает сценарии опросов, по которым Windows потом показывает вопросы «Насколько вы довольны».",
+    "effect": "immediate",
+    "risk": "safe",
+    "needs_admin": true,
+    "action": {
+      "type": "ScheduledTask",
+      "paths": ["\\Microsoft\\Windows\\Feedback\\Siuf\\DmClientOnScenarioDownload"]
+    }
+  },
+  {
+    "id": "task_feedback_dmclient",
+    "category": "privacy",
+    "title": "Выключить задание отправки отзывов (DmClient)",
+    "detail": "Задание отвечает за показ и отправку опросов «Насколько вы довольны Windows».",
+    "effect": "immediate",
+    "risk": "safe",
+    "needs_admin": true,
+    "action": {
+      "type": "ScheduledTask",
+      "paths": ["\\Microsoft\\Windows\\Feedback\\Siuf\\DmClient"]
+    }
+  },
+  {
+    "id": "appx_bing_news",
+    "category": "privacy",
+    "title": "Удалить «Новости» (Microsoft.BingNews)",
+    "detail": "Приложение новостей, оно же источник заголовков в виджетах. Удаление необратимо: вернуть можно только установкой из Microsoft Store.",
+    "effect": "immediate",
+    "risk": "irreversible",
+    "needs_admin": false,
+    "action": { "type": "AppxRemove", "package": "Microsoft.BingNews" }
+  },
+  {
+    "id": "appx_bing_weather",
+    "category": "privacy",
+    "title": "Удалить «Погоду» (Microsoft.BingWeather)",
+    "detail": "Встроенное приложение погоды. Удаление необратимо: вернуть можно только из Microsoft Store.",
+    "effect": "immediate",
+    "risk": "irreversible",
+    "needs_admin": false,
+    "action": { "type": "AppxRemove", "package": "Microsoft.BingWeather" }
+  },
+  {
+    "id": "appx_solitaire",
+    "category": "privacy",
+    "title": "Удалить «Коллекцию пасьянсов»",
+    "detail": "Предустановленная игра с рекламой и подпиской. Удаление необратимо: вернуть можно только из Microsoft Store.",
+    "effect": "immediate",
+    "risk": "irreversible",
+    "needs_admin": false,
+    "action": { "type": "AppxRemove", "package": "Microsoft.MicrosoftSolitaireCollection" }
+  },
+  {
+    "id": "appx_clipchamp",
+    "category": "privacy",
+    "title": "Удалить Clipchamp",
+    "detail": "Предустановленный видеоредактор. Удаление необратимо: вернуть можно только из Microsoft Store.",
+    "effect": "immediate",
+    "risk": "irreversible",
+    "needs_admin": false,
+    "action": { "type": "AppxRemove", "package": "Clipchamp.Clipchamp" }
+  },
+  {
+    "id": "appx_get_help",
+    "category": "privacy",
+    "title": "Удалить «Техническую поддержку» (GetHelp)",
+    "detail": "Приложение обращения в поддержку Microsoft. Удаление необратимо; учтите, что ссылки «Получить помощь» из параметров перестанут открываться.",
+    "effect": "immediate",
+    "risk": "irreversible",
+    "needs_admin": false,
+    "action": { "type": "AppxRemove", "package": "Microsoft.GetHelp" }
+  },
+  {
+    "id": "appx_feedback_hub",
+    "category": "privacy",
+    "title": "Удалить «Центр отзывов»",
+    "detail": "Приложение для отправки отзывов в Microsoft. Удаление необратимо: вернуть можно только из Microsoft Store.",
+    "effect": "immediate",
+    "risk": "irreversible",
+    "needs_admin": false,
+    "action": { "type": "AppxRemove", "package": "Microsoft.WindowsFeedbackHub" }
+  }
+]

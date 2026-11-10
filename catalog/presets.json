@@ -1,0 +1,95 @@
+[
+  {
+    "id": "clean_look",
+    "title": "Чистый вид",
+    "detail": "Панель задач без лишних кнопок, старое контекстное меню, видимые расширения файлов, тёмная тема. Ничего, кроме внешнего вида, не трогает — и всё обратимо.",
+    "tweaks": [
+      "dark_mode",
+      "taskbar_left",
+      "taskbar_hide_search",
+      "taskbar_hide_widgets",
+      "taskbar_hide_taskview",
+      "taskbar_hide_chat",
+      "taskbar_end_task",
+      "explorer_show_extensions",
+      "explorer_open_this_pc",
+      "explorer_no_recent",
+      "explorer_sync_ads_off",
+      "context_menu_classic",
+      "shortcut_no_suffix"
+    ]
+  },
+  {
+    "id": "quiet_system",
+    "title": "Тихая система",
+    "detail": "Выключает телеметрию, рекламу, подсказки, Copilot, Recall и веб-поиск; гасит задания планировщика, которые собирают данные. Приложения не удаляет — удаление необратимо и выбирается поимённо.",
+    "tweaks": [
+      "telemetry_off",
+      "service_diagtrack",
+      "advertising_id_off",
+      "tailored_experiences_off",
+      "activity_history_off",
+      "start_suggestions_off",
+      "copilot_policy_off",
+      "copilot_button_off",
+      "recall_off",
+      "cortana_off",
+      "web_search_off",
+      "bing_search_off",
+      "feedback_off",
+      "task_ceip_consolidator",
+      "task_usbceip",
+      "task_appraiser",
+      "task_feedback_scenario",
+      "task_feedback_dmclient"
+    ]
+  },
+  {
+    "id": "rust_fps",
+    "title": "Под Rust",
+    "detail": "То же, что «Максимум кадров», плюс то, что важно именно Rust: он держит в памяти огромный мир, поэтому отключаются SysMain и служба телеметрии, которые читают диск в фоне, и снимается резерв полосы QoS — у Rust постоянный поток мелких пакетов. Рассчитано на настольный компьютер. Внутриигровые настройки и параметры запуска это не трогает: ими занимается BOB's Opti.",
+    "tweaks": [
+      "power_ultimate",
+      "cpu_min_state_100",
+      "cpu_parking_off",
+      "cpu_boost_aggressive",
+      "pcie_aspm_off",
+      "hags_on",
+      "gamedvr_off",
+      "gamedvr_policy_off",
+      "game_mode_on",
+      "system_responsiveness_10",
+      "network_throttling_off",
+      "nagle_off",
+      "qos_no_reserve",
+      "service_sysmain",
+      "service_diagtrack",
+      "mouse_accel_off",
+      "transparency_off",
+      "window_animations_off",
+      "visual_fx_performance"
+    ]
+  },
+  {
+    "id": "max_fps",
+    "title": "Максимум кадров",
+    "detail": "Питание на полную, ядра не парковать, фоновая запись игр выключена, сеть без искусственных задержек. Рассчитано на настольный компьютер: на ноутбуке от батареи половина пунктов просто сожжёт заряд.",
+    "tweaks": [
+      "power_high",
+      "cpu_min_state_100",
+      "cpu_parking_off",
+      "cpu_boost_aggressive",
+      "hags_on",
+      "gamedvr_off",
+      "gamedvr_policy_off",
+      "game_mode_on",
+      "system_responsiveness_10",
+      "network_throttling_off",
+      "nagle_off",
+      "mouse_accel_off",
+      "transparency_off",
+      "window_animations_off",
+      "visual_fx_performance"
+    ]
+  }
+]

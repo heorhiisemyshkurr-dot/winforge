@@ -1,0 +1,17 @@
+[package]
+name = "winforge"
+version = "0.1.0"
+description = "WinForge — настройка и оптимизация Windows: внешний вид, приватность, автозагрузка, производительность"
+authors = ["BOB's Opti"]
+edition = "2021"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+# Окно и мост до интерфейса. Плагины не подключены намеренно: всё, что
+# программа делает с системой, она делает сама через консольные средства
+# Windows, а не чужим кодом в своём процессе.
+tauri = { version = "2", features = [] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"

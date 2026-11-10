@@ -1,0 +1,288 @@
+[
+  {
+    "id": "power_ultimate",
+    "category": "performance",
+    "title": "Схема питания «Максимальная производительность»",
+    "detail": "Скрытая схема Windows, в которой процессор не уходит в энергосбережение. На ноутбуке батарея кончится ощутимо быстрее. Схема сначала «размножается» из скрытой в видимую копию — иначе её не включить.",
+    "effect": "immediate",
+    "risk": "safe",
+    "needs_admin": true,
+    "exclusive": "power_scheme",
+    "action": {
+      "type": "PowerScheme",
+      "guid": "e9a42b02-d5df-448d-aa00-03f14749eb61",
+      "duplicate": true
+    }
+  },
+  {
+    "id": "power_high",
+    "category": "performance",
+    "title": "Схема питания «Высокая производительность»",
+    "detail": "Обычная высокая схема: частоты держатся выше, процессор реже снижает их в простое. Разумный выбор по умолчанию для настольного компьютера.",
+    "effect": "immediate",
+    "risk": "safe",
+    "needs_admin": true,
+    "exclusive": "power_scheme",
+    "action": {
+      "type": "PowerScheme",
+      "guid": "8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c",
+      "duplicate": false
+    }
+  },
+  {
+    "id": "power_balanced",
+    "category": "performance",
+    "title": "Схема питания «Сбалансированная»",
+    "detail": "Схема по умолчанию. Здесь она затем, чтобы с любой другой можно было вернуться одним нажатием.",
+    "effect": "immediate",
+    "risk": "safe",
+    "needs_admin": true,
+    "exclusive": "power_scheme",
+    "action": {
+      "type": "PowerScheme",
+      "guid": "381b4222-f694-41f0-9685-ff5bb260df2e",
+      "duplicate": false
+    }
+  },
+  {
+    "id": "cpu_min_state_100",
+    "category": "performance",
+    "title": "Минимальное состояние процессора — 100%",
+    "detail": "Процессор перестаёт сбрасывать частоту в простое: пропадают микропаузы на разгон частоты в начале нагрузки. Цена — нагрев и энергопотребление в простое. Применяется к активной схеме питания, и от сети, и от батареи.",
+    "effect": "immediate",
+    "risk": "caution",
+    "needs_admin": true,
+    "action": {
+      "type": "PowerSetting",
+      "sub": "54533251-82be-4824-96c1-47b60b740d00",
+      "setting": "893dee8e-2bef-41e0-89c6-b55d0929964c",
+      "value": "100"
+    }
+  },
+  {
+    "id": "cpu_parking_off",
+    "category": "performance",
+    "title": "Запретить парковку ядер",
+    "detail": "Windows перестаёт усыплять часть ядер при слабой нагрузке. Выход ядра из парковки занимает доли миллисекунды, и на них приходится часть дрожания кадров в играх. На процессорах AMD с CPPC и под схемой «Максимальная производительность» параметр бывает заблокирован самой схемой — она и так не паркует ядра; программа в этом случае скажет об этом прямо, а не пересказом ошибки Windows.",
+    "effect": "immediate",
+    "risk": "safe",
+    "needs_admin": true,
+    "action": {
+      "type": "PowerSetting",
+      "sub": "54533251-82be-4824-96c1-47b60b740d00",
+      "setting": "0cc5b647-c1df-4637-891a-dec35c318583",
+      "value": "100"
+    }
+  },
+  {
+    "id": "cpu_boost_aggressive",
+    "category": "performance",
+    "title": "Агрессивный режим ускорения процессора",
+    "detail": "Процессор поднимает частоту выше базовой охотнее и держит дольше. На ноутбуке с плохим охлаждением это может привести к обратному: нагрев — и сброс частоты.",
+    "effect": "immediate",
+    "risk": "caution",
+    "needs_admin": true,
+    "action": {
+      "type": "PowerSetting",
+      "sub": "54533251-82be-4824-96c1-47b60b740d00",
+      "setting": "be337238-0d82-4146-a960-4f3749d470c7",
+      "value": "2"
+    }
+  },
+  {
+    "id": "pcie_aspm_off",
+    "category": "performance",
+    "title": "Отключить энергосбережение шины PCI Express",
+    "detail": "Шина к видеокарте и накопителю перестаёт уходить в состояния пониженного питания. Убирает редкие задержки на выходе из них; расход энергии в простое вырастает.",
+    "effect": "immediate",
+    "risk": "caution",
+    "needs_admin": true,
+    "action": {
+      "type": "PowerSetting",
+      "sub": "501a4d13-42af-4429-9fd1-a8218c268e20",
+      "setting": "ee12f906-d277-404b-b6da-e5fa1a576df5",
+      "value": "0"
+    }
+  },
+  {
+    "id": "hags_on",
+    "category": "performance",
+    "title": "Планирование графического процессора с аппаратным ускорением",
+    "detail": "Видеокарта сама распределяет очередь задач вместо драйвера. На современных картах обычно даёт небольшой выигрыш по задержке ввода, на старых не даёт ничего. Требует перезагрузки и поддержки драйвером.",
+    "effect": "reboot",
+    "risk": "safe",
+    "needs_admin": true,
+    "action": {
+      "type": "Reg",
+      "path": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\GraphicsDrivers",
+      "name": "HwSchMode",
+      "kind": "REG_DWORD",
+      "data": "2"
+    }
+  },
+  {
+    "id": "gamedvr_off",
+    "category": "performance",
+    "title": "Выключить фоновую запись игр (для пользователя)",
+    "detail": "Game DVR постоянно держит последние секунды игры в буфере — это работа видеокарты и диска, которая идёт всегда, даже если вы ничего не записываете.",
+    "effect": "sign_out",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\System\\GameConfigStore",
+      "name": "GameDVR_Enabled",
+      "kind": "REG_DWORD",
+      "data": "0"
+    }
+  },
+  {
+    "id": "gamedvr_policy_off",
+    "category": "performance",
+    "title": "Запретить фоновую запись игр политикой",
+    "detail": "То же, но на уровне всей системы. Отдельным пунктом, потому что это другая ветка: пользовательское значение Windows иногда возвращает себе обратно после обновлений, политика — нет.",
+    "effect": "reboot",
+    "risk": "safe",
+    "needs_admin": true,
+    "action": {
+      "type": "Reg",
+      "path": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\GameDVR",
+      "name": "AllowGameDVR",
+      "kind": "REG_DWORD",
+      "data": "0"
+    }
+  },
+  {
+    "id": "game_mode_on",
+    "category": "performance",
+    "title": "Включить игровой режим",
+    "detail": "Windows отдаёт игре приоритет и придерживает фоновые задачи вроде обновлений, пока игра на переднем плане.",
+    "effect": "immediate",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\GameBar",
+      "name": "AutoGameModeEnabled",
+      "kind": "REG_DWORD",
+      "data": "1"
+    }
+  },
+  {
+    "id": "system_responsiveness_10",
+    "category": "performance",
+    "title": "Меньше времени фоновым задачам (SystemResponsiveness)",
+    "detail": "Планировщик мультимедиа резервирует часть времени процессора фоновым службам — по умолчанию 20%. Значение 10 отдаёт игре и звуку больше. Ноль ставить не стоит: на нём у части систем начинает трещать звук.",
+    "effect": "reboot",
+    "risk": "safe",
+    "needs_admin": true,
+    "action": {
+      "type": "Reg",
+      "path": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile",
+      "name": "SystemResponsiveness",
+      "kind": "REG_DWORD",
+      "data": "10"
+    }
+  },
+  {
+    "id": "network_throttling_off",
+    "category": "performance",
+    "title": "Снять ограничение сетевого потока",
+    "detail": "Windows ограничивает приём пакетов для несетевых приложений десятью тысячами в секунду; значение ffffffff снимает предел. Заметно там, где игра и голосовой чат идут одновременно.",
+    "effect": "reboot",
+    "risk": "safe",
+    "needs_admin": true,
+    "action": {
+      "type": "Reg",
+      "path": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile",
+      "name": "NetworkThrottlingIndex",
+      "kind": "REG_DWORD",
+      "data": "0xffffffff"
+    }
+  },
+  {
+    "id": "nagle_off",
+    "category": "performance",
+    "title": "Выключить алгоритм Нейгла на всех сетевых адаптерах",
+    "detail": "Нейгл склеивает мелкие пакеты, добавляя им задержку, — в играх это лишние миллисекунды. Два значения пишутся в подраздел каждого адаптера: Windows читает их оттуда, а не из общей ветки, и именно поэтому «одна строчка в реестре» из советов в интернете не делает ничего.",
+    "effect": "reboot",
+    "risk": "safe",
+    "needs_admin": true,
+    "action": {
+      "type": "RegEach",
+      "base": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters\\Interfaces",
+      "values": [
+        { "name": "TcpAckFrequency", "kind": "REG_DWORD", "data": "1" },
+        { "name": "TCPNoDelay", "kind": "REG_DWORD", "data": "1" }
+      ]
+    }
+  },
+  {
+    "id": "qos_no_reserve",
+    "category": "performance",
+    "title": "Не резервировать полосу под QoS",
+    "detail": "Windows по умолчанию оставляет пятую часть исходящей полосы под приоритетный трафик. Значение ноль снимает резерв. Выигрыш виден только на узком канале.",
+    "effect": "reboot",
+    "risk": "safe",
+    "needs_admin": true,
+    "action": {
+      "type": "Reg",
+      "path": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Psched",
+      "name": "NonBestEffortLimit",
+      "kind": "REG_DWORD",
+      "data": "0"
+    }
+  },
+  {
+    "id": "fast_startup_off",
+    "category": "performance",
+    "title": "Выключить быстрый запуск",
+    "detail": "Быстрый запуск не выключает компьютер по-настоящему, а сохраняет ядро системы в файл. Из-за этого «выключить и включить» не лечит проблемы, а обновления драйверов применяются только после перезагрузки. Без него выключение честное, а загрузка на несколько секунд дольше.",
+    "effect": "reboot",
+    "risk": "safe",
+    "needs_admin": true,
+    "action": {
+      "type": "Reg",
+      "path": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Power",
+      "name": "HiberbootEnabled",
+      "kind": "REG_DWORD",
+      "data": "0"
+    }
+  },
+  {
+    "id": "hibernate_off",
+    "category": "performance",
+    "title": "Отключить гибернацию и удалить hiberfil.sys",
+    "detail": "Освобождает на системном диске файл размером примерно с половину оперативной памяти. Платите тем, что пропадёт режим гибернации (и быстрый запуск вместе с ним). Откат — обратная команда powercfg, файл создастся заново.",
+    "effect": "immediate",
+    "risk": "caution",
+    "needs_admin": true,
+    "action": {
+      "type": "Command",
+      "apply": ["powercfg", "/hibernate", "off"],
+      "revert": ["powercfg", "/hibernate", "on"],
+      "probe": {
+        "path": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Power",
+        "name": "HibernateEnabled",
+        "kind": "REG_DWORD",
+        "data": "0"
+      }
+    }
+  },
+  {
+    "id": "visual_fx_performance",
+    "category": "performance",
+    "title": "Визуальные эффекты — «наилучшее быстродействие»",
+    "detail": "Ставит в свойствах системы режим минимума эффектов. Честная оговорка: часть эффектов Windows читает из отдельной двоичной маски, которую этот пункт не трогает, — тени и анимации сворачивания отключаются пунктами в разделе «Внешний вид».",
+    "effect": "sign_out",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\VisualEffects",
+      "name": "VisualFXSetting",
+      "kind": "REG_DWORD",
+      "data": "2"
+    }
+  }
+]

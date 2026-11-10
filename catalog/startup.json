@@ -1,0 +1,152 @@
+[
+  {
+    "id": "service_sysmain",
+    "category": "startup",
+    "title": "Отключить SysMain (бывший Superfetch)",
+    "detail": "Служба заранее подгружает в память то, что вы обычно запускаете. На жёстком диске она полезна, на SSD выгода спорная, а фоновое чтение диска заметно. Освобождает память, может немного замедлить первый запуск программ.",
+    "effect": "immediate",
+    "risk": "caution",
+    "needs_admin": true,
+    "action": { "type": "Service", "name": "SysMain", "start": "disabled" }
+  },
+  {
+    "id": "service_wsearch",
+    "category": "startup",
+    "title": "Отключить службу поиска Windows (WSearch)",
+    "detail": "Снимает постоянную индексацию диска. Платите за это поиском: меню «Пуск» и Проводник перестанут находить файлы по содержимому и по имени мгновенно — останется медленный перебор папок.",
+    "effect": "immediate",
+    "risk": "caution",
+    "needs_admin": true,
+    "action": { "type": "Service", "name": "WSearch", "start": "disabled" }
+  },
+  {
+    "id": "service_spooler",
+    "category": "startup",
+    "title": "Отключить диспетчер печати (Spooler)",
+    "detail": "Печать перестанет работать полностью — и на принтер, и в PDF. Включайте, только если принтера нет. Эта же служба исторически — источник уязвимостей вроде PrintNightmare.",
+    "effect": "immediate",
+    "risk": "caution",
+    "needs_admin": true,
+    "action": { "type": "Service", "name": "Spooler", "start": "disabled" }
+  },
+  {
+    "id": "service_remote_registry",
+    "category": "startup",
+    "title": "Отключить удалённый реестр (RemoteRegistry)",
+    "detail": "Служба позволяет менять реестр этого компьютера по сети. В домашней системе она не нужна никому, кроме того, кто пришёл без приглашения. По умолчанию и так выключена — пункт для проверки.",
+    "effect": "immediate",
+    "risk": "safe",
+    "needs_admin": true,
+    "action": { "type": "Service", "name": "RemoteRegistry", "start": "disabled" }
+  },
+  {
+    "id": "service_fax",
+    "category": "startup",
+    "title": "Отключить службу факсов (Fax)",
+    "detail": "Служба отправки факсов через модем. Нужна ровно тем, у кого есть факс-модем.",
+    "effect": "immediate",
+    "risk": "safe",
+    "needs_admin": true,
+    "action": { "type": "Service", "name": "Fax", "start": "disabled" }
+  },
+  {
+    "id": "service_mapsbroker",
+    "category": "startup",
+    "title": "Отключить загрузку карт (MapsBroker)",
+    "detail": "Служба скачивает офлайн-карты в фоне. Приложение «Карты» без неё перестанет обновлять данные.",
+    "effect": "immediate",
+    "risk": "caution",
+    "needs_admin": true,
+    "action": { "type": "Service", "name": "MapsBroker", "start": "disabled" }
+  },
+  {
+    "id": "service_wisvc",
+    "category": "startup",
+    "title": "Отключить службу программы предварительной оценки",
+    "detail": "Служба Windows Insider. Нужна только тем, кто получает тестовые сборки системы.",
+    "effect": "immediate",
+    "risk": "safe",
+    "needs_admin": true,
+    "action": { "type": "Service", "name": "wisvc", "start": "disabled" }
+  },
+  {
+    "id": "service_retaildemo",
+    "category": "startup",
+    "title": "Отключить демонстрационный режим магазина",
+    "detail": "Служба режима витрины для компьютеров на полке магазина. На личной машине не используется никогда.",
+    "effect": "immediate",
+    "risk": "safe",
+    "needs_admin": true,
+    "action": { "type": "Service", "name": "RetailDemo", "start": "disabled" }
+  },
+  {
+    "id": "service_xbox_auth",
+    "category": "startup",
+    "title": "Отключить Xbox Live: вход (XblAuthManager)",
+    "detail": "Вход в учётную запись Xbox перестанет работать. Это ломает Game Pass и игры, которые требуют входа в Xbox, — для них службу надо вернуть.",
+    "effect": "immediate",
+    "risk": "caution",
+    "needs_admin": true,
+    "action": { "type": "Service", "name": "XblAuthManager", "start": "disabled" }
+  },
+  {
+    "id": "service_xbox_save",
+    "category": "startup",
+    "title": "Отключить Xbox Live: сохранения в облаке (XblGameSave)",
+    "detail": "Синхронизация сохранений игр через Xbox Live перестанет работать. Локальные сохранения остаются на месте.",
+    "effect": "immediate",
+    "risk": "caution",
+    "needs_admin": true,
+    "action": { "type": "Service", "name": "XblGameSave", "start": "disabled" }
+  },
+  {
+    "id": "service_xbox_net",
+    "category": "startup",
+    "title": "Отключить сетевую службу Xbox (XboxNetApiSvc)",
+    "detail": "Сетевые функции Xbox Live. Нужна играм из Game Pass и мультиплееру через Xbox Live.",
+    "effect": "immediate",
+    "risk": "caution",
+    "needs_admin": true,
+    "action": { "type": "Service", "name": "XboxNetApiSvc", "start": "disabled" }
+  },
+  {
+    "id": "service_biometrics",
+    "category": "startup",
+    "title": "Отключить биометрическую службу (WbioSrvc)",
+    "detail": "Вход по отпечатку пальца и по лицу перестанет работать. Если вы входите в Windows этим способом, оставьте службу включённой.",
+    "effect": "immediate",
+    "risk": "caution",
+    "needs_admin": true,
+    "action": { "type": "Service", "name": "WbioSrvc", "start": "disabled" }
+  },
+  {
+    "id": "onedrive_autostart_off",
+    "category": "startup",
+    "title": "Убрать OneDrive из автозагрузки",
+    "detail": "OneDrive перестанет запускаться при входе. Сам он остаётся установленным, файлы никуда не исчезают, запустить его можно вручную. Запись автозагрузки сохраняется в снимке — откат вернёт её как было.",
+    "effect": "sign_out",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "RegRemove",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run",
+      "name": "OneDrive"
+    }
+  },
+  {
+    "id": "startup_delay_off",
+    "category": "startup",
+    "title": "Убрать задержку запуска программ автозагрузки",
+    "detail": "Windows по умолчанию ждёт около десяти секунд после входа, прежде чем запускать программы автозагрузки, — чтобы рабочий стол появился быстрее. Без задержки всё стартует сразу, но первые секунды система будет занята сильнее.",
+    "effect": "sign_out",
+    "risk": "safe",
+    "needs_admin": false,
+    "action": {
+      "type": "Reg",
+      "path": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Serialize",
+      "name": "StartupDelayInMSec",
+      "kind": "REG_DWORD",
+      "data": "0"
+    }
+  }
+]
